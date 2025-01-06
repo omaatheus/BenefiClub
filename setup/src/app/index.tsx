@@ -2,12 +2,13 @@ import { Button } from '@/components/button'
 import { Steps } from '@/components/steps'
 import { Welcome } from '@/components/welcome'
 import { router } from 'expo-router'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, StatusBar } from 'react-native'
 
 export default function Index() {
     return(
 
         <View style={styles.container}>
+            <StatusBar barStyle="dark-content" />
             <Welcome />
             <Steps />
 
