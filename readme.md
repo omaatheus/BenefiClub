@@ -18,9 +18,13 @@ O Beneficlub é um aplicativo desenvolvido para gerenciar um clube de benefício
 1. Clone o repositório:
    ```bash
    git clone https://github.com/omaatheus/BenefiClub
-   
+
    cd mobile-api
    npm starts
    
    cd setup
    npx expo start
+
+### **Vídeo Demonstrativo**  
+Confira o aplicativo em ação no vídeo demonstrativo:  
+[![Beneficlub - Vídeo Demonstrativo](https://img.youtube.com/vi/Lf0HtbB_I9Y/0.jpg)](https://youtube.com/shorts/Lf0HtbB_I9Y?si=ZPBdcZUum3AO2VkH)  
