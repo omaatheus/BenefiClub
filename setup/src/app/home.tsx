@@ -8,6 +8,7 @@ import { Categories, CategoriesProps } from "@/components/categories";
 import { PlaceProps } from "@/components/place";
 import { Places } from "@/components/places";
 import * as Location from 'expo-location';
+import { router } from "expo-router";
 
 type MarketsProps = PlaceProps & {
     latitude: number,
@@ -113,7 +114,7 @@ export default function Home(){
                         }}
                         image={require('@/assets/pin.png')}
                         >
-                            <Callout>
+                            <Callout onPress={() => router.navigate(`/market/${item.id}`)}>
                                 <View>
                                     <Text style={styles.nameCallout}>
                                         {item.name}
