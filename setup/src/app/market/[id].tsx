@@ -1,4 +1,4 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, Modal } from 'react-native'
 
 import { Cover } from '@/components/market/cover';
 
@@ -8,8 +8,13 @@ import { Loading } from '@/components/loading';
 
 import { PropsDetails, Details } from '@/components/market/details';
 
+import { Coupon } from '@/components/market/coupon';
+
 import { api } from '@/services/api';
 import { useEffect, useState } from 'react';
+import { Button } from '@/components/button';
+
+
 
 type DataProps = PropsDetails & {
     cover: string
@@ -19,6 +24,8 @@ export default function Market() {
 
     const [data, setData] = useState<DataProps>()
     const [isLoading, setIsLoading] = useState(true)
+    const [coupon, setCoupon] = useState<string | null>(null)
+    const [isVisibleCameraModal, setIsVisibleCameraModal] = useState(false)
     
     const params = useLocalSearchParams<{id: string}>()
 
@@ -34,6 +41,15 @@ export default function Market() {
                     text: "Ok", onPress: () => router.back()
                 }
             ])
+        }
+    }
+
+    function handleOpenCamera(){
+        try {
+            setIsVisibleCameraModal(true)
+        } catch (error) {
+            console.error(error);
+            
         }
     }
 
@@ -54,6 +70,22 @@ export default function Market() {
             <Cover uri={data.cover} />
 
             <Details data={data} />
+            { coupon &&  <Coupon code={coupon} />}
+            <View style={{padding: 32}}>
+                <Button onPress={handleOpenCamera}>
+                    <Button.Title>Ler QR Code</Button.Title>
+                </Button>
+            </View>
+
+            <Modal style={{flex: 1}} visible={isVisibleCameraModal}>
+                <View style={{flex: 1, justifyContent: "center"}}>
+                <Button onPress={() => setIsVisibleCameraModal(false)}>
+                    <Button.Title>
+                        Retornar
+                    </Button.Title>
+                </Button>
+                </View>
+            </Modal>
         </View>
     )
 }
